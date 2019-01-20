@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html 	xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:p="http://primefaces.org/ui">
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Insert title here</title>
+</h:head>
+<h:body>
+	 <p:messages id="messages" showDetail="true" closable="true"/>
+	 
+	 <h:form>
+	 	<h:panelGrid id="grid" columns="3" cellpadding="5">
+	        <p:outputLabel for="usuarioLogin" value="Login" />
+	        <p:inputText id="usuarioLogin" required="true"/>
+	        <p:message for="usuarioLogin" />
+	 
+	        <p:outputLabel for="senhaLogin" value="Senha" />
+	        <p:password id="senhaLogin" required="true"/>
+	        <p:message for="senhaLogin" display="text" />
+    	</h:panelGrid>
+ 
+    	<p:commandButton id="submitButton" value="Submit" update="grid" action="#{usuarioBean.cadastrar()}" />
+	 </h:form>
+</h:body>
+</html>
