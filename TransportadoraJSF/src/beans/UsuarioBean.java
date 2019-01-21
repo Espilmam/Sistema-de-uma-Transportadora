@@ -24,4 +24,8 @@ public class UsuarioBean {
 	public void cadastrar () {
 		 //FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Fatal!", "System Error"));
 	}
+	
+	public void login () {
+		
+	}
 }

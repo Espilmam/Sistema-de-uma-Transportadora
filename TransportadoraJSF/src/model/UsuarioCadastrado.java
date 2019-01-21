@@ -1,11 +1,13 @@
 package model;
 
+import java.util.Date;
 import java.util.List;
 
 public class UsuarioCadastrado {
 
 	private String nome;
 	private String sobrenome;
+	private Date dataNascimento;
 	private char telefone;
 	private Endereco endereco;
 	private String login;
@@ -84,6 +86,14 @@ public class UsuarioCadastrado {
 
 	public void setPacotes(List<Pacote> pacotes) {
 		this.pacotes = pacotes;
+	}
+
+	public Date getDataNascimento() {
+		return dataNascimento;
+	}
+
+	public void setDataNascimento(Date dataNascimento) {
+		this.dataNascimento = dataNascimento;
 	}
 
 }
