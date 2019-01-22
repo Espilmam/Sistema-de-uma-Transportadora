@@ -4,14 +4,30 @@
 		xmlns:h="http://java.sun.com/jsf/html"
 		xmlns:f="http://java.sun.com/jsf/core"
 		xmlns:p="http://primefaces.org/ui">
+		
 <h:head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+
+<h:outputScript library="primefaces" target="form">
+$ = jQuery;
+$(document).ready(function(){
+	$("#areaCadastro").hide();
+	$("#areaLogin\\:cadastro").click(function(){
+		$("#areaCadastro").show();
+		$("#areaLogin").hide();
+	});
+});
+</h:outputScript>
+
+
+
 <title>Acesso do Cliente</title>
 </h:head>
-<h:body>
-	 <p:messages id="messages" showDetail="true" closable="true"/>
+
+<h:body id="corpo">
+	 <p:messages id="messages" showDetail="true" closable="true" />
 	 
-	 <h:form>
+	 <h:form id="areaLogin">
 	 	<h:panelGrid id="grid" columns="3" cellpadding="5">
 	        <p:outputLabel for="usuarioLogin" value="Login" />
 	        <p:inputText id="usuarioLogin" required="true"/>
@@ -19,14 +35,14 @@
 	 	
 	        <p:outputLabel for="senhaLogin" value="Senha" />
 	        <p:password id="senhaLogin" required="true"/>
-	        <p:message for="senhaLogin" display="text" />
+	        <p:message for="senhaLogin" />
     	</h:panelGrid>
  
     	<p:commandButton id="login" value="Login" update="grid" action="#{usuarioBean.login()}" />
-    	<p:commandButton id="cadastro" value="Novo Cadastro" update="grid" action="#{usuarioBean.cadastrar()}" />
+    	<p:button id="cadastro" value="Novo Cadastro" type="button" action="#{usuarioBean.vazio()}" />
 	 </h:form>
 	 
-	 <h:form>
+	 <h:form id="areaCadastro">
 	 	<h:panelGrid columns="3" cellpadding="5"> 
 	 		<p:outputLabel for="nomeUsuario" value="Nome" />
 	 		<p:inputText id="nomeUsuario" required="true" />
@@ -37,11 +53,11 @@
 	 		<p:message for="sobrenomeUsuario"/>
 	 		
 	 		<p:outputLabel for="nascimentoUsuario" value="Data de Nascimento" />
-	 		<p:calendar id="nascimentoUsuario" value="#{usuarioBean.usuario.dataNascimento}" pattern="dd-MM-yyyy" mask="true"/>
+	 		<p:calendar id="nascimentoUsuario" value="#{usuarioBean.usuario.dataNascimento}" pattern="dd-MM-yyyy" mask="true" required="true"/>
 	 		<p:message for="nascimentoUsuario"/>
 	 		
 	 		<p:outputLabel for="telefoneUsuario" value="Telefone de Contato" />
-	 		<p:inputMask id="telefoneUsuario" value="#{usuarioBean.usuario.telefone}" mask="(99) 99999-9999"/>
+	 		<p:inputMask id="telefoneUsuario" value="#{usuarioBean.usuario.telefone}" mask="(99) 99999-9999" required="true"/>
 	 		<p:message for="telefoneUsuario" />
 	 	</h:panelGrid>
 	 	
@@ -53,11 +69,11 @@
    		<h:panelGrid columns="3" cellpadding="5">
    			<p:radioButton id="cpf" for="radioPessoaUsuario" itemIndex="0" />
        		<p:outputLabel for="cpf" value="CPF" />
-       		<p:inputMask value="#{maskView.taxId}" mask="999.999.999-99"/>
+       		<p:inputMask value="#{maskView.taxId}" mask="999.999.999-99" required="true"/>
        		
        		<p:radioButton id="cnpj" for="radioPessoaUsuario" itemIndex="1" />
        		<p:outputLabel for="cnpj" value="CNPJ" />
-       		<p:inputMask  value="#{maskView.taxId}" mask="99.999.999/9999-99" />
+       		<p:inputMask  value="#{maskView.taxId}" mask="99.999.999/9999-99" required="true"/>
 	   </h:panelGrid>
 
 		<h:panelGrid columns="3" cellpadding="5">
@@ -74,7 +90,7 @@
 	 		<p:message for="complementoUsuario"/>
 	 		
 	 		<p:outputLabel for="cepUsuario" value="CEP"/>
-	 		<p:inputMask id="cepUsuario" value="#{usuarioBean.usuario.endereco.cep}" mask="99999-999"/>
+	 		<p:inputMask id="cepUsuario" value="#{usuarioBean.usuario.endereco.cep}" mask="99999-999" required="true"/>
 	 		<p:message for="cepUsuario"/>
 	 		
 	 		<p:outputLabel for="bairroUsuario" value="Bairro"/>
@@ -86,7 +102,7 @@
 	 		<p:message for="cidadeBairro"/>
 	 		
 	 		<p:outputLabel for="estadoUsuario" value="Estado" />
-        	<p:selectOneMenu id="estadoUsuario" value="#{usuarioBean.usuario.endereco.estado}" style="width:125px">
+        	<p:selectOneMenu id="estadoUsuario" value="#{usuarioBean.usuario.endereco.estado}" style="width:125px" required="true">
             	<f:selectItem itemLabel="Selecione" itemValue="" />
             	<f:selectItem itemLabel="Acre" itemValue="Acre" />
             	<f:selectItem itemLabel="Alagoas" itemValue="Alagoas" />

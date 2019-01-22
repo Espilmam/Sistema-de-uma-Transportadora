@@ -28,4 +28,8 @@ public class UsuarioBean {
 	public void login () {
 		
 	}
+	
+	public boolean vazio () {
+		return false;
+	}
 }
